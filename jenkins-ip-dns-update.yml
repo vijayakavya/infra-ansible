@@ -1,14 +1,24 @@
 - name: Update Jenkins IP in Route53
   hosts: localhost
   tasks:
-   - name: Update Jenkins IP
-     amazon.aws.route53:
-       state: present
-       zone: kdevopsb26.online
-       record: jenkins.kdevopsb26.online
-       type: A
-       ttl: 10
-       value: 3.94.208.122
-       wait: true
+#  - name: Update Jenkins IP
+#    amazon.aws.route53:
+#      state: present
+#      zone: kdevopsb26.online
+#      record: jenkins.kdevopsb26.online
+#      type: A
+#       ttl: 10
+#      value: 3.94.208.122
+#      wait: true
+
+   - name: List all EIP addresses for a VM
+     amazon.ews.ec2_eip_info:
+       filters:
+         instance_id: i-00404fb70d6d5c9f3
+     register: out
+
+   - name: print
+     debug:
+       msg: "{{out}}"
 
 
