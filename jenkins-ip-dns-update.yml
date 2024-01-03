@@ -13,6 +13,7 @@
 
    - name: List all EIP addresses for a VM
      amazon.ews.ec2_eip_info:
+       region: us-east-1
        filters:
          instance_id: i-00404fb70d6d5c9f3
      register: out
